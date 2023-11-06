@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+compileJava   {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    dependencies {
+        // https://mvnrepository.com/artifact/org.apache.spark/spark-core
+        implementation("org.apache.spark:spark-core_2.13:3.4.1")
+        // https://mvnrepository.com/artifact/org.apache.spark/spark-sql
+        compileOnly("org.apache.spark:spark-sql_2.13:3.4.1")
+        // https://mvnrepository.com/artifact/org.apache.spark/spark-streaming
+        compileOnly ('org.apache.spark:spark-streaming_2.13:3.4.1')
+        implementation('org.apache.spark:spark-avro_2.13:3.4.1')
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
