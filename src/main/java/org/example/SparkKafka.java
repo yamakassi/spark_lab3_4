@@ -43,7 +43,7 @@ public class SparkKafka {
                 .select("data.*");
 
         Dataset<Row> result = kafkaData.groupBy("brand")
-                .agg(sum("price").as("total_price"), count("*").as("count"));
+                .agg(sum("price").as("totalPrice"), count("*").as("count"));
 
 
         result.selectExpr("to_json(struct(*)) as value")
@@ -51,7 +51,7 @@ public class SparkKafka {
                 .outputMode("complete")
                 .format("kafka")
                 .option("kafka.bootstrap.servers", KAFKA_BROKERS)
-                .option("topic", "test_topic")
+                .option("topic", "SPARK_OUT")
                 .start()
                 .awaitTermination();
 
